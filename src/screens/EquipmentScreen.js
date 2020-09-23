@@ -5,7 +5,7 @@ import {useQuery} from '@apollo/client';
 import GET_EQUIPMENTS from '../graphql/query/equipment';
 
 import SearchBox from '../components/SearchBox';
-import EquipmentList from '../components/EquipmentList';
+import ListEquipment from '../components/equipment/ListEquipment';
 
 const EquipmentScreen = () => {
   const {error, data, loading} = useQuery(GET_EQUIPMENTS);
@@ -13,7 +13,7 @@ const EquipmentScreen = () => {
   const displayData = () => {
     if (loading) return <ActivityIndicator size="large" color="#C0C0C0" />;
     if (error) return <Text>Error : {error.message}</Text>;
-    if (data) return <EquipmentList data={data} />;
+    if (data) return <ListEquipment data={data} />;
   };
 
   return (
@@ -29,9 +29,11 @@ const EquipmentScreen = () => {
 const styles = StyleSheet.create({
   screen: {
     marginTop: 30,
+    marginHorizontal: 20,
   },
   searchContainer: {
     alignItems: 'center',
+    marginVertical: 30,
   },
 });
 

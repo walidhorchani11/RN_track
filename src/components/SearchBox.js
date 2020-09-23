@@ -19,7 +19,7 @@ const styles = StyleSheet.create({
   searchContainer: {
     flexDirection: 'row',
     alignItems: 'center',
-    width: '90%',
+    width: '100%',
     height: 50,
     borderRadius: 5,
     backgroundColor: '#C0C0C0',
