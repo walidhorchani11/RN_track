@@ -1,34 +1,27 @@
 import React from 'react';
-import {View, StyleSheet, Text, Button} from 'react-native';
+import {View, StyleSheet, Text, ActivityIndicator} from 'react-native';
 
-import {useQuery, useLazyQuery} from '@apollo/client';
-import GetCompanies from '../graphql/query/company';
+import {useQuery} from '@apollo/client';
+import GET_EQUIPMENTS from '../graphql/query/equipment';
 
 import SearchBox from '../components/SearchBox';
+import EquipmentList from '../components/EquipmentList';
 
-const EquipmentScreen = (props) => {
-  //const {loading, error, data} = useQuery(EXCHANGE_RATES);
-  // const [search, {error, data, loading}] = useLazyQuery(GetCompanies);
+const EquipmentScreen = () => {
+  const {error, data, loading} = useQuery(GET_EQUIPMENTS);
 
-  // const onGet = async () => {
-  //   try {
-  //     await search();
-  //   } catch (error) {
-  //     console.log('error lors du get companies:', error);
-  //   }
-  // };
-
-  // if (loading) return <Text>Loading...</Text>;
-  // if (error) return <Text>Error : {error.message}</Text>;
+  const displayData = () => {
+    if (loading) return <ActivityIndicator size="large" color="#C0C0C0" />;
+    if (error) return <Text>Error : {error.message}</Text>;
+    if (data) return <EquipmentList data={data} />;
+  };
 
   return (
     <View style={styles.screen}>
       <View style={styles.searchContainer}>
         <SearchBox placeholder="search equipment" />
       </View>
-
-      {/* <Button title="companies" onPress={onGet} /> */}
-      {/* <EquipmentList /> */}
+      <View>{displayData()}</View>
     </View>
   );
 };
