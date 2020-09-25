@@ -1,5 +1,12 @@
 import React from 'react';
-import {View, StyleSheet, Text, ActivityIndicator} from 'react-native';
+import {
+  View,
+  StyleSheet,
+  Text,
+  ActivityIndicator,
+  TouchableWithoutFeedback,
+  Keyboard,
+} from 'react-native';
 
 import {useQuery} from '@apollo/client';
 import GET_EQUIPMENTS from '../graphql/query/equipment';
@@ -17,12 +24,14 @@ const EquipmentScreen = () => {
   };
 
   return (
-    <View style={styles.screen}>
-      <View style={styles.searchContainer}>
-        <SearchBox placeholder="search equipment" />
+    <TouchableWithoutFeedback onPress={() => Keyboard.dismiss()}>
+      <View style={styles.screen}>
+        <View style={styles.searchContainer}>
+          <SearchBox placeholder="search equipment" />
+        </View>
+        <View>{displayData()}</View>
       </View>
-      <View>{displayData()}</View>
-    </View>
+    </TouchableWithoutFeedback>
   );
 };
 

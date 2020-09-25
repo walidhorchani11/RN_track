@@ -1,33 +1,34 @@
 import React from 'react';
 import {View, StyleSheet, Text, Image} from 'react-native';
 
-const ItemEquipment = ({equipment}) => {
+const ItemUser = ({user}) => {
   return (
     <View style={styles.itemContainer}>
       <View style={styles.imageContainer}>
         <Image
-          source={require('../../assets/tel.jpg')}
+          source={require('../../assets/avatar_profile.png')}
           resizeMode="cover"
           style={styles.image}
         />
       </View>
 
-      <Text>{equipment.name}</Text>
+      <Text>{user && user.name}</Text>
     </View>
   );
 };
 
 const styles = StyleSheet.create({
   itemContainer: {
-    width: '50%',
+    width: '100%',
     height: 150,
     //borderColor: 'red',
     borderWidth: 1,
-    //marginVertical: 30,
+    marginVertical: 10,
   },
   imageContainer: {
     width: '100%',
-    height: '80%',
+    height: '70%',
+    //borderRadius: 50,
   },
   image: {
     width: '100%',
@@ -35,4 +36,4 @@ const styles = StyleSheet.create({
   },
 });
 
-export default ItemEquipment;
+export default ItemUser;

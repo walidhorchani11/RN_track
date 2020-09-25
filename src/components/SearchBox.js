@@ -9,7 +9,10 @@ const SearchBox = (props) => {
         <FeatherIcon name="search" size={25} />
       </View>
       <View>
-        <TextInput placeholder={props.placeholder} />
+        <TextInput
+          placeholder={props.placeholder}
+          style={{backgroundColor: 'green'}}
+        />
       </View>
     </View>
   );

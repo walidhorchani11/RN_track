@@ -1,21 +1,42 @@
 import React from 'react';
-import {View, StyleSheet, Text} from 'react-native';
+import {View, StyleSheet, ScrollView, SafeAreaView, Button} from 'react-native';
 
 import ItemEquipment from './ItemEquipment';
+import Card from '../shared/Card';
+import ItemUser from '../user/ItemUser';
 
 const ListEquipment = ({data}) => {
   console.log('data equipments :', data);
   return (
-    <View>
+    <ScrollView>
       {data.equipments.map((equipment) => {
-        return <ItemEquipment equipment={equipment} />;
+        return (
+          <Card key={equipment.id} style={styles.cardContainer}>
+            <ItemEquipment equipment={equipment} />
+            {equipment.user ? (
+              <View style={styles.itemUserContainer}>
+                <ItemUser user={equipment.user} />
+                <Button title="liberer" />
+              </View>
+            ) : (
+              <Button title="affecter" />
+            )}
+          </Card>
+        );
       })}
-    </View>
+    </ScrollView>
   );
 };
 
 const styles = StyleSheet.create({
-  equipmentsContainer: {},
+  cardContainer: {
+    flexDirection: 'row',
+    alignItems: 'center',
+  },
+  itemUserContainer: {
+    backgroundColor: 'yellow',
+    flex: 1,
+  },
 });
 
 export default ListEquipment;

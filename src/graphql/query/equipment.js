@@ -7,6 +7,11 @@ const GET_EQUIPMENTS = gql`
       name
       reference
       available
+      user {
+        id
+        name
+        image
+      }
     }
   }
 `;
