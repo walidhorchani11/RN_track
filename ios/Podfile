@@ -12,6 +12,8 @@ target 'vibe' do
 
   pod 'BVLinearGradient', :path => '../node_modules/react-native-linear-gradient'
 
+  pod 'RNCAsyncStorage', :path => '../node_modules/@react-native-community/async-storage'
+
   target 'vibeTests' do
     inherit! :complete
     # Pods for testing
