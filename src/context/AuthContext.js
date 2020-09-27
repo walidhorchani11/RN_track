@@ -14,7 +14,7 @@ const AuthContext = ({children}) => {
   const isAuthenticated = authInfo.token !== null;
 
   return (
-    <Provider value={(authInfo, setAuthInfo, isAuthenticated)}>
+    <Provider value={{authInfo, setAuthInfo, isAuthenticated}}>
       {children}
     </Provider>
   );
