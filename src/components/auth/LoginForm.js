@@ -1,11 +1,14 @@
-import React, {useState} from 'react';
+import React, {useState, useContext} from 'react';
 import {View, StyleSheet, TextInput, Button} from 'react-native';
 
 import {useMutation} from '@apollo/client';
 import AsyncStorage from '@react-native-community/async-storage';
 import LOGIN from '../../graphql/query/auth';
 
+import AuthContext from '../../context/AuthContext';
+
 const LoginForm = (props) => {
+  const authContext = useContext(AuthContext);
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
 
@@ -13,6 +16,12 @@ const LoginForm = (props) => {
     onCompleted({login}) {
       console.log('our data login is ::', login.payload.token);
       AsyncStorage.setItem('@vibe/token', login.payload.token);
+      //TODO garder une seule methode soit asyncStorage ou context
+      //use context pour enregistrer data comme token c'est comme asyncStorage
+      authContext.setAuthInfo({
+        token: login.payload.token,
+        userData: login.payload.user,
+      });
     },
   });
 
