@@ -8,7 +8,7 @@ const AuthContext = ({children}) => {
   //mettre les donees que je veux les partager pour tous les components
   const [authInfo, setAuthInfo] = useState({
     token: null,
-    infoUser: {},
+    userData: {},
   });
 
   const isAuthenticated = authInfo.token !== null;
