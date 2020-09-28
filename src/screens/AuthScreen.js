@@ -9,6 +9,7 @@ import {
   View,
 } from 'react-native';
 import {useMutation} from '@apollo/client';
+import AsyncStorage from '@react-native-community/async-storage';
 import LOGIN from '../graphql/query/auth';
 import LinearGradient from 'react-native-linear-gradient';
 import Card from '../components/shared/Card';
@@ -17,9 +18,15 @@ const AuthScreen = () => {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
 
-  const [loginMutation, {loading, error, data}] = useMutation(LOGIN);
+  const [loginMutation, {loading, error, data}] = useMutation(LOGIN, {
+    onCompleted({login}) {
+      console.log('our data login is ::', login.payload.token);
+      AsyncStorage.setItem('@vibe/token', login.payload.token);
+    },
+  });
 
   console.log('our data jwt:::', data, error);
+
   return (
     <TouchableWithoutFeedback onPress={Keyboard.dismiss}>
       <LinearGradient
