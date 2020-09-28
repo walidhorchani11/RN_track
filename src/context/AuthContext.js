@@ -1,10 +1,9 @@
 import React, {createContext, useState} from 'react';
+//creer le Context
+export const AuthContext = createContext();
+const Provider = AuthContext.Provider;
 
-const AuthContext = ({children}) => {
-  //creer le Context
-  const Context = createContext();
-  const Provider = Context.Provider;
-
+const AuthProvider = ({children}) => {
   //mettre les donees que je veux les partager pour tous les components
   const [authInfo, setAuthInfo] = useState({
     token: null,
@@ -20,4 +19,4 @@ const AuthContext = ({children}) => {
   );
 };
 
-export default AuthContext;
+export default AuthProvider;

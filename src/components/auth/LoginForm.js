@@ -5,7 +5,7 @@ import {useMutation} from '@apollo/client';
 import AsyncStorage from '@react-native-community/async-storage';
 import LOGIN from '../../graphql/query/auth';
 
-import AuthContext from '../../context/AuthContext';
+import {AuthContext} from '../../context/AuthContext';
 
 const LoginForm = (props) => {
   const authContext = useContext(AuthContext);
