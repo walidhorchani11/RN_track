@@ -1,20 +1,18 @@
 import React, {useState} from 'react';
 import {View, StyleSheet, TextInput, Button} from 'react-native';
 
-import {useMutation, useApolloClient} from '@apollo/client';
+import {useMutation} from '@apollo/client';
 import AsyncStorage from '@react-native-community/async-storage';
 import LOGIN from '../../graphql/query/auth';
 
 const LoginForm = (props) => {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
-  const client = useApolloClient();
 
   const [loginMutation, {loading, error, data}] = useMutation(LOGIN, {
     onCompleted({login}) {
       console.log('our data login is ::', login.payload.token);
       AsyncStorage.setItem('@vibe/token', login.payload.token);
-      client.writeData({data: {isLoggedIn: true}});
     },
   });
 
